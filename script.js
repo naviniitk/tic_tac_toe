@@ -19,13 +19,17 @@ const Player = (name) => {
         if(rowSum[row-1] == 3 || columnSum[col-1] == 3 || 
             (diagSum[0] == 1 && diagSum[1] == 1 && diagSum[2] == 1)|| 
             (antiDiag[0] == 1 && antiDiag[1] == 1 && antiDiag[2] == 1)){
-            alert("Winner "+ this.name);
-            
-            
+            return 1;
         }
-        
+        return 0;
     }
-    return {name, makeMove};
+    function clear(){
+        rowSum = [0, 0, 0];
+        columnSum = [0, 0, 0];
+        diagSum = [0, 0, 0];
+        antiDiag = [0, 0, 0];
+    }
+    return {name, makeMove, clear};
 };
 
 
@@ -52,22 +56,26 @@ const displayController = (() => {
             if(count%2 == 0){
                 this.innerText = "X";
                 let str = this.id;
-                if(player1.makeMove(parseInt(str[0]), parseInt(str[1])) == 0){
-                    count = 0;
-                    return;
+                if(player1.makeMove(parseInt(str[0]), parseInt(str[1]))){
+                    alert("Winner: "+ player1.name);
+                    player1.clear();
+                    player2.clear();
+                    restartGame();
                 };
                 count++;
             }
             else{
                 this.innerText = "O";
                 let str = this.id;
-                if(player2.makeMove(parseInt(str[0]), parseInt(str[1])) == 0){
-                    count = 0;
-                    return;
+                if(player2.makeMove(parseInt(str[0]), parseInt(str[1]))){
+                    alert("Winner: "+ player2.name);
+                    player1.clear();
+                    player2.clear();
+                    restartGame();
                 };
                 count++;
             }
-            
+            console.log(count);
         }
     }
 })();
