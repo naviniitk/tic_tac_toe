@@ -16,18 +16,14 @@ const Player = (name) => {
         if(row+col-1 == 3){
             antiDiag[row-1] += 1;
         }
-        if(rowSum[row-1] == 3){
+        if(rowSum[row-1] == 3 || columnSum[col-1] == 3 || 
+            (diagSum[0] == 1 && diagSum[1] == 1 && diagSum[2] == 1)|| 
+            (antiDiag[0] == 1 && antiDiag[1] == 1 && antiDiag[2] == 1)){
             alert("Winner "+ this.name);
+            
+            
         }
-        if(columnSum[col-1] == 3){
-            alert("Winner "+ this.name);
-        }
-        if(diagSum[0] == 1 && diagSum[1] == 1 && diagSum[2] == 1){
-            alert("Winner "+ this.name);
-        }
-        if(antiDiag[0] == 1 && antiDiag[1] == 1 && antiDiag[2] == 1){
-            alert("Winner "+ this.name);
-        }
+        
     }
     return {name, makeMove};
 };
@@ -43,9 +39,11 @@ const displayController = (() => {
         
     }
     let button = document.getElementById("btn");
-    button.onclick = () => {
+    button.onclick = restartGame;
+    function restartGame() {
         for(let i = 0; i < cells.length; i++){
             cells[i].innerText = "";
+            count = 0;
         }
     }
     
@@ -54,13 +52,19 @@ const displayController = (() => {
             if(count%2 == 0){
                 this.innerText = "X";
                 let str = this.id;
-                player1.makeMove(parseInt(str[0]), parseInt(str[1]));
+                if(player1.makeMove(parseInt(str[0]), parseInt(str[1])) == 0){
+                    count = 0;
+                    return;
+                };
                 count++;
             }
             else{
                 this.innerText = "O";
                 let str = this.id;
-                player2.makeMove(parseInt(str[0]), parseInt(str[1]));
+                if(player2.makeMove(parseInt(str[0]), parseInt(str[1])) == 0){
+                    count = 0;
+                    return;
+                };
                 count++;
             }
             
