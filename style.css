@@ -1,9 +1,12 @@
 h1 {
-    background-color: green;
+    background-color: azure;
     width: 300px;
+    text-align: center;
+    margin: auto;
 }
 #container {
     display: grid;
+    margin: auto;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     width: 300px;
@@ -13,8 +16,16 @@ h1 {
     background-color: skyblue;
     text-align: center;
     border-style: solid;
-    border-width: thin;
+    border-width: 1px;
+    padding-top: 38px;
+    padding-bottom: auto;
 }
 .cell:hover {
     background-color: steelblue;
+}
+#btn {
+    background-color: azure;
+    padding: 10px;
+    display: flex;
+    margin: auto;
 }

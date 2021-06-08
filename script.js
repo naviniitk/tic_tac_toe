@@ -76,7 +76,6 @@ const displayController = (() => {
                 
             }
             count++;
-            console.log(count);
         }
     }
 })();
