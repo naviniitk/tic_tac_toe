@@ -36,14 +36,15 @@ const Player = (name) => {
 const displayController = (() => {
     let cells = document.getElementsByClassName("cell");
     let count = 0;
-    const player1 = Player("Ben");
-    const player2 = Player("Kevin");
+    const player1 = Player(window.prompt("Player1 name: ", "Ben"));
+    const player2 = Player(window.prompt("Player2 name: ", "Kevin"));
     for(let i = 0; i < cells.length; i++){
         cells[i].addEventListener("click", clickAction);
         
     }
     let button = document.getElementById("btn");
     button.onclick = restartGame;
+
     function restartGame() {
         for(let i = 0; i < cells.length; i++){
             cells[i].innerText = "";
@@ -52,6 +53,7 @@ const displayController = (() => {
             player2.clear();
         }
     }
+
     function addImage(name) {
         const img = document.createElement("img");
         img.src = name;
@@ -62,7 +64,8 @@ const displayController = (() => {
     }
 
     function clickAction(){
-        if(this.innerText == ""){
+        if((this.childNodes.length === 0)){
+            
             if(count%2 == 0){
                 this.appendChild(addImage("cross.png"));
                 let str = this.id;
