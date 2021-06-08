@@ -48,6 +48,8 @@ const displayController = (() => {
         for(let i = 0; i < cells.length; i++){
             cells[i].innerText = "";
             count = 0;
+            player1.clear();
+            player2.clear();
         }
     }
     
@@ -58,23 +60,22 @@ const displayController = (() => {
                 let str = this.id;
                 if(player1.makeMove(parseInt(str[0]), parseInt(str[1]))){
                     alert("Winner: "+ player1.name);
-                    player1.clear();
-                    player2.clear();
                     restartGame();
+                    return;
                 };
-                count++;
+                
             }
             else{
                 this.innerText = "O";
                 let str = this.id;
                 if(player2.makeMove(parseInt(str[0]), parseInt(str[1]))){
                     alert("Winner: "+ player2.name);
-                    player1.clear();
-                    player2.clear();
                     restartGame();
+                    return;
                 };
-                count++;
+                
             }
+            count++;
             console.log(count);
         }
     }
