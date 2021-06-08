@@ -36,8 +36,8 @@ const Player = (name) => {
 const displayController = (() => {
     let cells = document.getElementsByClassName("cell");
     let count = 0;
-    const player1 = Player(window.prompt("Player1 name: ", "Ben"));
-    const player2 = Player(window.prompt("Player2 name: ", "Kevin"));
+    const player1 = Player(window.prompt("Player1 name: ") || "Player1");
+    const player2 = Player(window.prompt("Player2 name: ") || "PLayer2");
     for(let i = 0; i < cells.length; i++){
         cells[i].addEventListener("click", clickAction);
         
