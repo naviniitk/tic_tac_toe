@@ -52,11 +52,19 @@ const displayController = (() => {
             player2.clear();
         }
     }
-    
+    function addImage(name) {
+        const img = document.createElement("img");
+        img.src = name;
+        img.style.width = "90px";
+        img.style.height = "90px";
+        img.style.margin = "auto";
+        return img;
+    }
+
     function clickAction(){
         if(this.innerText == ""){
             if(count%2 == 0){
-                this.innerText = "X";
+                this.appendChild(addImage("cross.png"));
                 let str = this.id;
                 if(player1.makeMove(parseInt(str[0]), parseInt(str[1]))){
                     alert("Winner: "+ player1.name);
@@ -66,7 +74,7 @@ const displayController = (() => {
                 
             }
             else{
-                this.innerText = "O";
+                this.appendChild(addImage("zero.png"));
                 let str = this.id;
                 if(player2.makeMove(parseInt(str[0]), parseInt(str[1]))){
                     alert("Winner: "+ player2.name);
